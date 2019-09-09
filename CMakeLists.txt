@@ -21,9 +21,33 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
+SET(CMAKE_C_COMPILER /usr/local/bin/gcc-8)
+SET(CMAKE_CXX_COMPILER /usr/local/bin/g++-8)
+#SET(CMAKE_C_COMPILER /usr/bin/clang)
+#SET(CMAKE_CXX_COMPILER /usr/bin/clang++)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+set(Qt5_DIR "/usr/local/Cellar/qt/5.13.0/lib/cmake/QT5/")
+message(STATUS "${CMAKE_MODULE_PATH}")
+
+
 include(opentrack-check-build-directory)
 include(opentrack-mrproper)
+
+if (${CMAKE_HOST_SYSTEM_NAME} MATCHES "Darwin")
+   message(STATUS "SYSTEM: ${CMAKE_HOST_SYSTEM_NAME}")
+   set(MACOSX TRUE)
+   set(APPLE TRUE)
+endif()
+
+set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
+
+set(CMAKE_C_LINKER_PREFERENCE_PROPAGATES OFF)
+set(CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES ON)
+
+include(opentrack-policy NO_POLICY_SCOPE)
 
 project(opentrack)
 cmake_minimum_required(VERSION 2.8.11)
