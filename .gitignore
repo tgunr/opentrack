@@ -11,3 +11,6 @@
 /.idea/
 /sdk-paths-*.cmake
 /.vs/
+*.dot
+*dot.*
+opentrack.png
